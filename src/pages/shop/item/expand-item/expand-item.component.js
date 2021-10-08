@@ -51,7 +51,7 @@ const ExpandItem = ({ item }) => {
                 fugiat sequi harum.
               </About>
             </HoldInfo>
-            <Functions />
+            <Functions item={item} />
           </AfterInfo>
         </Info>
       </Content>
