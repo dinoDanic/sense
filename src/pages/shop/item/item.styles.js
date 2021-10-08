@@ -7,24 +7,24 @@ export const ItemWrap = styled(motion.div)`
   max-width: 270px;
   cursor: pointer;
   margin-top: 60px;
+  position: relative;
 `;
 
-export const Image = styled.img`
-  width: 60px;
+export const Image = styled(motion.img)`
+  width: 70px;
   object-fit: contain;
-  margin-top: -30%;
 `;
 
 export const HoldImage = styled(motion.div)`
-  display: flex;
-  height: 50px;
-  justify-content: flex-end;
+  position: absolute;
+  right: 20px;
+  top: -30px;
 `;
 
 export const Info = styled(motion.div)``;
 
 export const Name = styled(motion.div)`
-  margin-top: 30px;
+  margin-top: 0px;
   color: ${(props) => props.theme.colors.ui.gray};
 `;
 

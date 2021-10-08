@@ -8,7 +8,7 @@ export const InfoHold = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 30px;
+  width: 25px;
 `;
 
 export const Text = styled.div`

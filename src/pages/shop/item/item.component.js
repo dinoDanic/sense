@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import Box from "../../../theme/ui-components/box/box.component";
 import { ItemWrap, Image, HoldImage, Name, Value, Info } from "./item.styles";
+import ExpandItem from "./expand-item/expand-item.component";
 
 const Item = ({ item }) => {
+  const [expand, setExpand] = useState(false);
   const { name, image, value } = item;
   const itemAni = {};
   const boxAni = {
@@ -17,19 +20,27 @@ const Item = ({ item }) => {
     tap: { scale: 1 },
   };
   return (
-    <ItemWrap variants={itemAni} whileHover="hover" whileTap="tap">
-      <Box variant="product" variants={boxAni}>
-        {image && (
-          <HoldImage variants={imgAni}>
-            <Image src={image} />
-          </HoldImage>
-        )}
-        <Info variants={infoAni}>
-          <Name>{name}</Name>
-          <Value>{value}</Value>
-        </Info>
-      </Box>
-    </ItemWrap>
+    <>
+      <ItemWrap
+        variants={itemAni}
+        whileHover="hover"
+        whileTap="tap"
+        onClick={() => setExpand(true)}
+      >
+        <Box variant="product" variants={boxAni} layoutId={name}>
+          {image && (
+            <HoldImage variants={imgAni}>
+              <Image src={image} layoutId={`image ${name}`} />
+            </HoldImage>
+          )}
+          <Info variants={infoAni} layoutId={`info ${name}`}>
+            <Name layoutId={`name ${name}`}>{name}</Name>
+            <Value layoutId={`value ${name}`}>{value}</Value>
+          </Info>
+        </Box>
+      </ItemWrap>
+      {expand && <ExpandItem item={item} />}
+    </>
   );
 };
 

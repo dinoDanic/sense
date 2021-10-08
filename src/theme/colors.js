@@ -1,8 +1,10 @@
 export const colors = {
   ui: {
+    grayLight: "#ddd",
     gray: "#999",
     grayDark: "#333",
-    primary: "#F2C42C",
+    primary: "#2D284F",
+    primaryLight: "#603CB7",
   },
   gradiant: {
     default:
