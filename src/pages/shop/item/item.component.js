@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Box from "../../../theme/ui-components/box/box.component";
 import { ItemWrap, Image, HoldImage, Name, Value, Info } from "./item.styles";
 import ExpandItem from "./expand-item/expand-item.component";
@@ -39,7 +39,9 @@ const Item = ({ item }) => {
           </Info>
         </Box>
       </ItemWrap>
-      {expand && <ExpandItem item={item} />}
+      <AnimatePresence exitBeforeEnter>
+        {expand && <ExpandItem item={item} setExpand={setExpand} key="eo" />}
+      </AnimatePresence>
     </>
   );
 };

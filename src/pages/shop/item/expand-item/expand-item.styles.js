@@ -67,3 +67,11 @@ export const PriceText = styled.div`
 `;
 
 export const HoldInfo = styled.div``;
+
+export const Layer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+`;

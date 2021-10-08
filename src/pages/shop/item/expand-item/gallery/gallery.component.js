@@ -3,7 +3,6 @@ import { MainImage, Wrap, SubImages, MainImg } from "./gallery.styles";
 import SubImage from "./sub-image/sub-image.component";
 
 const Gallery = ({ gallery }) => {
-  console.log(gallery);
   const [firstImage, setFirstImage] = useState(gallery[0].image);
   const [index, setIndex] = useState(0);
   useEffect(() => {

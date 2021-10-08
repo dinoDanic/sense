@@ -33,5 +33,5 @@ const variants = {
 
 export const BoxWrap = styled(motion.div)`
   ${({ theme }) => defaultStyle(theme)};
-  ${({ theme, variant }) => variants[variant](theme)}
+  ${({ theme, variant }) => variant && variants[variant](theme)}
 `;

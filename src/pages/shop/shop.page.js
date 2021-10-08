@@ -9,7 +9,7 @@ const Shop = () => {
   const shop = useSelector((state) => state.shop);
   return (
     <Wrap>
-      <AnimateSharedLayout>
+      <AnimateSharedLayout type="crossfade">
         {shop.items.map((item) => (
           <Item item={item} />
         ))}
