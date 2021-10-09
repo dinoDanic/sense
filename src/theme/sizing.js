@@ -7,5 +7,6 @@ export const sizing = {
   font: {
     lg: "1.5rem",
     sm: "0.8rem",
+    xs: "0.7rem",
   },
 };

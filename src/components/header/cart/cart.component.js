@@ -12,38 +12,37 @@ import {
 } from "./cart.styles";
 import CartImage from "../../../img/cart.svg";
 import CartItem from "./cartitem/carti-item.component";
+import { useChartSum } from "../../../hooks";
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.shop.cartItems);
-  const [cartSum, setCartSum] = useState(0);
+  const shop = useSelector((state) => state.shop);
   const [scale, setScale] = useState(1);
+  const sum = useChartSum();
+
   useEffect(() => {
-    if (!cartItems) return;
-    const sum = cartItems.reduce((prev, next) => prev + next.amount, 0);
-    setCartSum(sum);
+    if (!shop.cartItems) return;
+    console.log(sum);
     if (sum > 0) {
-      console.log("newitem");
       setScale(1.4);
       setTimeout(() => {
         setScale(1);
       }, 200);
     }
-  }, [cartItems]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sum]);
   return (
     <Wrap>
       <Link to="/checkout">
         <Image src={CartImage} />
       </Link>
-      {cartSum > 0 && (
-        <CartCount animate={{ scale: scale }}>{cartSum}</CartCount>
-      )}
+      {sum > 0 && <CartCount animate={{ scale: scale }}>{sum}</CartCount>}
       <Preview>
         <ExtandHold />
         <Arrow />
-        {cartItems.map((item) => (
+        {shop.cartItems.map((item) => (
           <CartItem item={item} />
         ))}
-        {cartItems.length === 0 && <p>empty</p>}
+        {shop.cartItems.length === 0 && <p>empty</p>}
       </Preview>
     </Wrap>
   );
