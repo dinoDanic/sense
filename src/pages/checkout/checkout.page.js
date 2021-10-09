@@ -10,7 +10,6 @@ import {
   CartInfo,
   Text,
   Message,
-  CreditCard,
   Items,
 } from "./checkout.styles";
 import CartItem from "./cart-item/cart-item.component";

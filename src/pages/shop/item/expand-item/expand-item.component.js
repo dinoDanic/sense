@@ -19,7 +19,7 @@ import { HoldImage, Image, Name } from "../item.styles";
 import Gallery from "./gallery/gallery.component";
 
 const ExpandItem = ({ item, setExpand }) => {
-  const { name, image, value, gallery } = item;
+  const { name, image, value, gallery, description } = item;
   const [isAfterInfo, setIsAfterInfo] = useState(true);
   const AfterAni = {
     initial: { opacity: 0, y: -10 },
@@ -55,12 +55,7 @@ const ExpandItem = ({ item, setExpand }) => {
                     {value} <Currency>Kn</Currency>
                     <PriceText>with shipping + handling</PriceText>
                   </Price>
-                  <About>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Odit impedit in rerum ut veritatis autem dolores aliquid rem
-                    veniam nemo laborum quasi, commodi omnis illum aperiam!
-                    Consequatur fugiat sequi harum.
-                  </About>
+                  <About>{description}</About>
                 </HoldInfo>
                 <Functions item={item} />
               </AfterInfo>

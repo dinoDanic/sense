@@ -21,7 +21,6 @@ const Cart = () => {
 
   useEffect(() => {
     if (!shop.cartItems) return;
-    console.log(sum);
     if (sum > 0) {
       setScale(1.4);
       setTimeout(() => {

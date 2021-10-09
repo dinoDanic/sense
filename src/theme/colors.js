@@ -5,6 +5,7 @@ export const colors = {
     grayDark: "#333",
     primary: "#2D284F",
     primaryLight: "#603CB7",
+    secondary: "#4EE0C1",
   },
   gradiant: {
     default:

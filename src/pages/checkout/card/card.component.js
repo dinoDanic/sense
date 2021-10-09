@@ -4,7 +4,9 @@ import CardImg1 from "../../../img/cards/card1.png";
 import CardImg2 from "../../../img/cards/card2.png";
 import CardImg3 from "../../../img/cards/card3.png";
 import CardImg4 from "../../../img/cards/card4.png";
+
 import Input from "../../../theme/ui-components/input/input.component";
+import Calculator from "../calculator/calculator.component";
 
 const Card = () => {
   return (
@@ -22,6 +24,7 @@ const Card = () => {
         <Input label="Expiration Date" placeholder="MM/YY" />
         <Input label="CVV" />
       </Inputs>
+      <Calculator />
     </Wrap>
   );
 };
