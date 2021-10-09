@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import {
   Wrap,
@@ -30,7 +31,9 @@ const Cart = () => {
   }, [cartItems]);
   return (
     <Wrap>
-      <Image src={CartImage} />
+      <Link to="/checkout">
+        <Image src={CartImage} />
+      </Link>
       {cartSum > 0 && (
         <CartCount animate={{ scale: scale }}>{cartSum}</CartCount>
       )}

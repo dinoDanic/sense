@@ -44,6 +44,23 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: removeItem,
       };
+
+    case shopActionsTypes.ADD_ONE_AMOUNT:
+      const index = state.cartItems.findIndex(
+        (item) => item.id === action.payload
+      );
+      state.cartItems[index].amount = state.cartItems[index].amount + 1;
+      return {
+        ...state,
+      };
+    case shopActionsTypes.REMOVE_ONE_AMOUNT:
+      const index2 = state.cartItems.findIndex(
+        (item) => item.id === action.payload
+      );
+      state.cartItems[index2].amount = state.cartItems[index2].amount - 1;
+      return {
+        ...state,
+      };
     default:
       return state;
   }
