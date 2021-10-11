@@ -18,3 +18,8 @@ export const addError = (errorData) => ({
   type: userActionsTypes.ADD_ERROR,
   payload: errorData,
 });
+
+export const createOrder = (orderData) => ({
+  type: userActionsTypes.CREATE_ORDER,
+  payload: orderData,
+});

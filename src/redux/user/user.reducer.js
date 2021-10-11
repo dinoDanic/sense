@@ -13,6 +13,7 @@ const INITIAL_STATE = {
     cvv: "",
   },
   error: "",
+  orders: [],
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -28,12 +29,20 @@ const userReducer = (state = INITIAL_STATE, action) => {
         cardData: action.payload,
       };
     case userActionsTypes.CLEAR_USER_DATA:
-      return INITIAL_STATE;
+      return {
+        ...INITIAL_STATE,
+        orders: [...state.orders],
+      };
 
     case userActionsTypes.ADD_ERROR:
       return {
         ...state,
         error: action.payload,
+      };
+    case userActionsTypes.CREATE_ORDER:
+      return {
+        ...state,
+        orders: [...state.orders, action.payload],
       };
     default:
       return state;

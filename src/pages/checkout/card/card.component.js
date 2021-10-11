@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 import {
   addError,
+  createOrder,
   setCardData,
   setUserData,
 } from "../../../redux/user/user.actions";
@@ -57,6 +59,12 @@ const Card = () => {
     }
     dispatch(setUserData(userDetails));
     dispatch(setCardData(cardDetails));
+    const orderdata = {
+      items: [...cartItems],
+      userData: { ...userDetails },
+      id: uuidv4(),
+    };
+    dispatch(createOrder(orderdata));
     history.push("/checkout/order");
   };
 
