@@ -1,30 +1,54 @@
-import React from "react";
-import { Text, Wrap, CardType, CardImage, Inputs } from "./card.styles";
-import CardImg1 from "../../../img/cards/card1.png";
-import CardImg2 from "../../../img/cards/card2.png";
-import CardImg3 from "../../../img/cards/card3.png";
-import CardImg4 from "../../../img/cards/card4.png";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Wrap,
+  DetailsHolder,
+  DetailsWrap,
+  Next,
+  Prev,
+  ButtonsHolder,
+  ArrowNext,
+  ArrowPrev,
+  Slider,
+} from "./card.styles";
+import ArrrowImg from "../../../img/arrow.svg";
 
-import Input from "../../../theme/ui-components/input/input.component";
 import Calculator from "../calculator/calculator.component";
+import Button from "../../../theme/ui-components/button/button.conponent";
+import CardDetails from "./card-details/card-details.component";
+import UserDetails from "./user-details/user-details.component";
 
 const Card = () => {
+  const [step, setStep] = useState(1);
+  const [buttonValidaton, setButtonValidaton] = useState(false);
+  const [userDetails, setUserDetails] = useState({});
+  const [cardDetails, setCardDetails] = useState({});
+  const handleDetailsButton = () => {
+    setStep(step === 1 ? 2 : 1);
+  };
   return (
     <Wrap>
-      <Text>Card Details</Text>
-      <CardType>
-        <CardImage src={CardImg1} />
-        <CardImage src={CardImg2} />
-        <CardImage src={CardImg3} />
-        <CardImage src={CardImg4} />
-      </CardType>
-      <Input label="Name on Card" />
-      <Input label="Card Number" />
-      <Inputs>
-        <Input label="Expiration Date" placeholder="MM/YY" />
-        <Input label="CVV" />
-      </Inputs>
+      <DetailsWrap>
+        <Slider animate={{ x: step === 1 ? 0 : "-100%" }}>
+          <UserDetails
+            setUserDetails={setUserDetails}
+            userDetails={userDetails}
+          />
+          <CardDetails
+            setCardDetails={setCardDetails}
+            cardDetails={cardDetails}
+          />
+        </Slider>
+      </DetailsWrap>
       <Calculator />
+      <ButtonsHolder>
+        <Button color="green" onClick={handleDetailsButton}>
+          {step === 1 ? "Card Details" : "User Details"}
+        </Button>
+        <Button validate={buttonValidaton} color="green">
+          Place Order
+        </Button>
+      </ButtonsHolder>
     </Wrap>
   );
 };

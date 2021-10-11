@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Name, Value, Wrap } from "./coupon-item.styles";
+import { useDispatch } from "react-redux";
+
+import { Hold, Name, Remove, Value, Wrap } from "./coupon-item.styles";
 
 import { decNumber } from "../../../../helpers";
+import { removeCoupon } from "../../../../redux/coupons/coupons.actions";
 
 const CouponItem = ({ coupon, totalPrice }) => {
+  const dispatch = useDispatch();
   const [valueOfCoupon, setValueOfCoupon] = useState(0);
   const { name, value, type } = coupon;
   useEffect(() => {
@@ -19,10 +23,17 @@ const CouponItem = ({ coupon, totalPrice }) => {
     });
   }, [totalPrice, type, value]);
 
+  const handleRemove = () => {
+    dispatch(removeCoupon(coupon.name));
+  };
+
   return (
     <Wrap>
-      <Name>{name}</Name>
-      <Value>-{decNumber(valueOfCoupon)} €</Value>
+      <Hold>
+        <Name>{name}</Name>
+        <Value>-{decNumber(valueOfCoupon)} €</Value>
+        <Remove onClick={handleRemove}>Remove</Remove>
+      </Hold>
     </Wrap>
   );
 };

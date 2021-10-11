@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addCoupon } from "../../../redux/coupons/coupons.actions";
 import {
   Wrap,
   Item,
@@ -11,16 +12,16 @@ import {
 } from "./calculator.styles";
 
 import { decNumber } from "../../../helpers";
-import couponsMock from "../../../mock/coupons";
 
 import Button from "../../../theme/ui-components/button/button.conponent";
 import Input from "../../../theme/ui-components/input/input.component";
 import CouponItem from "./coupon-item/coupon-item.component";
 
 const Calculator = () => {
+  const dispatch = useDispatch();
   const shop = useSelector((state) => state.shop);
+  const coupons = useSelector((state) => state.coupons);
   const [isCoupon, setIsCoupon] = useState(false);
-  const [activeCoupons, setActiveCoupons] = useState([]);
   const [priceWithCoupons, setPriceWithCoupons] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [couponCode, setCouponCode] = useState("");
@@ -35,49 +36,48 @@ const Calculator = () => {
   }, [shop]);
 
   useEffect(() => {
-    console.log(activeCoupons);
-    const sum = activeCoupons.reduce((prev, next) => {
-      let price;
+    const sum = coupons.activeCoupons.reduce((prev, next) => {
       if (next.type === "percent") {
-        let difrence = (totalPrice * next.value) / 100;
-        console.log(difrence);
-        price = totalPrice - difrence;
-        console.log("price after", price);
-        return prev - price;
+        const percent = next.value;
+        const percentValue = (totalPrice / 100) * percent;
+        return prev - percentValue;
       }
       if (next.type === "number") {
-        price = totalPrice - next.value;
-        return prev - price;
+        const value = next.value;
+        return prev - value;
       }
-      return price;
+      return totalPrice;
     }, totalPrice);
+
     setPriceWithCoupons(sum);
-  }, [activeCoupons, totalPrice]);
+  }, [coupons, totalPrice]);
 
   const handleCoupon = (e) => {
     e.preventDefault();
-    const gotCoupon = couponsMock.find((coupon) => coupon.name === couponCode);
+    const gotCoupon = coupons.coupons.find(
+      (coupon) => coupon.name === couponCode
+    );
     if (!gotCoupon) {
       alert("no coupon found");
       setIsCoupon(false);
       return;
     } else {
-      if (!activeCoupons.length) {
-        setActiveCoupons([gotCoupon]);
+      if (!coupons.activeCoupons.length) {
+        dispatch(addCoupon(gotCoupon));
       } else {
         if (
           !gotCoupon.combine &&
-          activeCoupons.find((coupon) => coupon.combine === false)
+          coupons.activeCoupons.find((coupon) => coupon.combine === false)
         ) {
           alert("you cant combine this coupon");
           setIsCoupon(false);
           return;
         } else {
-          if (activeCoupons.includes(gotCoupon)) {
+          if (coupons.activeCoupons.includes(gotCoupon)) {
             alert("coupon allrdy applyed");
             return;
           }
-          setActiveCoupons([...activeCoupons, gotCoupon]);
+          dispatch(addCoupon(gotCoupon));
         }
       }
     }
@@ -91,11 +91,15 @@ const Calculator = () => {
         <Value>{decNumber(totalPrice)} €</Value>
       </Item>
       <ActiveCoupons>
-        {activeCoupons?.map((coupon) => (
-          <CouponItem coupon={coupon} totalPrice={totalPrice} />
+        {coupons.activeCoupons?.map((coupon) => (
+          <CouponItem
+            key={coupon.name}
+            coupon={coupon}
+            totalPrice={totalPrice}
+          />
         ))}
       </ActiveCoupons>
-      {activeCoupons.length > 0 && (
+      {coupons.activeCoupons.length > 0 && (
         <Item>
           <Name>Total</Name>
           <Value>{decNumber(priceWithCoupons)} €</Value>
