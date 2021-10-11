@@ -1,14 +1,18 @@
 import React from "react";
-import { Wrap } from "./header.styles";
+import { MyItems, Wrap } from "./header.styles";
 
 import Cart from "./cart/cart.component";
 import Logo from "./Logo/logo.component";
+import MyOrders from "./my-orders/my-orders.component";
 
 const Header = () => {
   return (
     <Wrap>
       <Logo />
-      <Cart />
+      <MyItems>
+        <MyOrders />
+        <Cart />
+      </MyItems>
     </Wrap>
   );
 };

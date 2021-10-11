@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "../../../../theme/ui-components/box/box.component";
 import Functions from "./functions/functions.component";
 import {
@@ -20,7 +20,6 @@ import Gallery from "./gallery/gallery.component";
 
 const ExpandItem = ({ item, setExpand }) => {
   const { name, image, value, gallery, description } = item;
-  const [isAfterInfo, setIsAfterInfo] = useState(true);
   const AfterAni = {
     initial: { opacity: 0, y: -10 },
     animate: { opacity: 1, y: 0, transition: { delay: 0.5 } },
@@ -42,24 +41,22 @@ const ExpandItem = ({ item, setExpand }) => {
             <Name layoutId={`name ${name}`}>
               <EditName>{name}</EditName>
             </Name>
-            {isAfterInfo && (
-              <AfterInfo
-                variants={AfterAni}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                key="after"
-              >
-                <HoldInfo>
-                  <Price>
-                    {value} <Currency>Kn</Currency>
-                    <PriceText>with shipping + handling</PriceText>
-                  </Price>
-                  <About>{description}</About>
-                </HoldInfo>
-                <Functions item={item} />
-              </AfterInfo>
-            )}
+            <AfterInfo
+              variants={AfterAni}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              key="after"
+            >
+              <HoldInfo>
+                <Price>
+                  {value} <Currency>€</Currency>
+                  <PriceText>with shipping + handling</PriceText>
+                </Price>
+                <About>{description}</About>
+              </HoldInfo>
+              <Functions item={item} />
+            </AfterInfo>
           </Info>
         </Content>
       </Box>

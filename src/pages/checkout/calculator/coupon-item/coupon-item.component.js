@@ -6,7 +6,7 @@ import { Hold, Name, Remove, Value, Wrap } from "./coupon-item.styles";
 import { decNumber } from "../../../../helpers";
 import { removeCoupon } from "../../../../redux/coupons/coupons.actions";
 
-const CouponItem = ({ coupon, totalPrice }) => {
+const CouponItem = ({ coupon, totalPrice, order }) => {
   const dispatch = useDispatch();
   const [valueOfCoupon, setValueOfCoupon] = useState(0);
   const { name, value, type } = coupon;
@@ -28,11 +28,11 @@ const CouponItem = ({ coupon, totalPrice }) => {
   };
 
   return (
-    <Wrap>
+    <Wrap order={order}>
       <Hold>
         <Name>{name}</Name>
         <Value>-{decNumber(valueOfCoupon)} €</Value>
-        <Remove onClick={handleRemove}>Remove</Remove>
+        {!order && <Remove onClick={handleRemove}>Remove</Remove>}
       </Hold>
     </Wrap>
   );

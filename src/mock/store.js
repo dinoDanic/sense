@@ -30,8 +30,8 @@ const storeMock = [
     image: MotionImg,
     id: 2,
     gallery: [
-      { name: "image1", id: 1, image: camera1 },
       { name: "image2", id: 2, image: camera2 },
+      { name: "image1", id: 1, image: camera1 },
       { name: "image3", id: 3, image: camera3 },
     ],
   },
@@ -43,9 +43,9 @@ const storeMock = [
     image: CameraImg,
     id: 3,
     gallery: [
-      { name: "image1", id: 1, image: camera1 },
-      { name: "image2", id: 2, image: camera2 },
       { name: "image3", id: 3, image: camera3 },
+      { name: "image2", id: 2, image: camera2 },
+      { name: "image1", id: 1, image: camera1 },
     ],
   },
   {
@@ -69,8 +69,8 @@ const storeMock = [
     image: WaterImg,
     id: 5,
     gallery: [
-      { name: "image1", id: 1, image: camera1 },
       { name: "image2", id: 2, image: camera2 },
+      { name: "image1", id: 1, image: camera1 },
       { name: "image3", id: 3, image: camera3 },
     ],
   },

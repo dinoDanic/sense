@@ -16,8 +16,9 @@ import { decNumber } from "../../../helpers";
 import Button from "../../../theme/ui-components/button/button.conponent";
 import Input from "../../../theme/ui-components/input/input.component";
 import CouponItem from "./coupon-item/coupon-item.component";
+import { addError } from "../../../redux/user/user.actions";
 
-const Calculator = () => {
+const Calculator = ({ order }) => {
   const dispatch = useDispatch();
   const shop = useSelector((state) => state.shop);
   const coupons = useSelector((state) => state.coupons);
@@ -58,7 +59,7 @@ const Calculator = () => {
       (coupon) => coupon.name === couponCode
     );
     if (!gotCoupon) {
-      alert("no coupon found");
+      dispatch(addError("No Coupons Found "));
       setIsCoupon(false);
       return;
     } else {
@@ -69,12 +70,12 @@ const Calculator = () => {
           !gotCoupon.combine &&
           coupons.activeCoupons.find((coupon) => coupon.combine === false)
         ) {
-          alert("you cant combine this coupon");
+          dispatch(addError("You Can't combine this Coupon"));
           setIsCoupon(false);
           return;
         } else {
           if (coupons.activeCoupons.includes(gotCoupon)) {
-            alert("coupon allrdy applyed");
+            dispatch(addError("Coupon Allready Applied"));
             return;
           }
           dispatch(addCoupon(gotCoupon));
@@ -93,6 +94,7 @@ const Calculator = () => {
       <ActiveCoupons>
         {coupons.activeCoupons?.map((coupon) => (
           <CouponItem
+            order={order}
             key={coupon.name}
             coupon={coupon}
             totalPrice={totalPrice}
@@ -105,20 +107,26 @@ const Calculator = () => {
           <Value>{decNumber(priceWithCoupons)} €</Value>
         </Item>
       )}
-      {isCoupon ? (
-        <AddCoupon onSubmi={handleCoupon}>
-          <Input
-            label="Add Coupon"
-            onChange={(e) => setCouponCode(e.target.value)}
-          />
-          <Button size="sm" color="green" onClick={handleCoupon}>
-            Add
-          </Button>
-        </AddCoupon>
-      ) : (
+      {!order && (
         <>
-          {shop.cartItems.length > 0 && (
-            <GotCoupon onClick={() => setIsCoupon(true)}>Add Coupon</GotCoupon>
+          {isCoupon ? (
+            <AddCoupon onSubmit={handleCoupon}>
+              <Input
+                label="Add Coupon"
+                onChange={(e) => setCouponCode(e.target.value)}
+              />
+              <Button size="sm" color="green" onClick={handleCoupon}>
+                Add
+              </Button>
+            </AddCoupon>
+          ) : (
+            <>
+              {shop.cartItems.length > 0 && (
+                <GotCoupon onClick={() => setIsCoupon(true)}>
+                  Add Coupon
+                </GotCoupon>
+              )}
+            </>
           )}
         </>
       )}

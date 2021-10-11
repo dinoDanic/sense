@@ -26,9 +26,14 @@ const product = (theme) => `
   justify-content: flex-end;
 `;
 
+const item = (theme) => `
+  margin-bottom: 10px;
+`;
+
 const variants = {
   expand,
   product,
+  item,
 };
 
 export const BoxWrap = styled(motion.div)`

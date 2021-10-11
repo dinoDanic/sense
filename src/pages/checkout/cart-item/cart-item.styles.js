@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
 export const Wrap = styled.div`
-  border-radius: ${(props) => props.theme.sizing.border.md};
-  padding: ${(props) => props.theme.spacing.padding.md};
-  box-shadow: ${(props) => props.theme.colors.shadows.default};
-  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
 `;
@@ -36,7 +32,14 @@ export const RightHold = styled.div`
   justify-content: flex-end;
 `;
 export const Delete = styled.div``;
+const withOrder = (theme) => `
+  width: 10px !important;
+  display: flex;
+  align-items: center;
+  font-size: ${theme.sizing.font.sm};
+`;
 export const Amount = styled.div`
+  ${({ order, theme }) => order && withOrder(theme)}
   display: flex;
   justify-content: space-between;
   width: 70px;

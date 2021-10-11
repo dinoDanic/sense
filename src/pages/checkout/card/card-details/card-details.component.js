@@ -29,7 +29,7 @@ const CardDetails = ({ cardDetails, setCardDetails }) => {
         <CardImage src={CardImg4} />
       </CardType>
       <Input
-        value={cardDetails.name}
+        value={cardDetails.cardName}
         name="cardName"
         label="Name on Card"
         onChange={handleChange}

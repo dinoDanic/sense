@@ -6,6 +6,8 @@ export const colors = {
     primary: "#2D284F",
     primaryLight: "#603CB7",
     secondary: "#4EE0C1",
+    danger: "#dd5454",
+    success: "#299929",
   },
   gradiant: {
     default:

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Box from "../../../theme/ui-components/box/box.component";
 import { ItemWrap, Image, HoldImage, Name, Value, Info } from "./item.styles";
 import ExpandItem from "./expand-item/expand-item.component";

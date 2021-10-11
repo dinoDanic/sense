@@ -61,6 +61,12 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
       };
+    case shopActionsTypes.CLEAR_CART:
+      return {
+        ...state,
+        cartItems: [],
+      };
+
     default:
       return state;
   }

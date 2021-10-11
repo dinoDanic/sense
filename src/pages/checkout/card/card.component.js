@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { setCardData, setUserData } from "../../../redux/user/user.actions";
+import {
+  addError,
+  setCardData,
+  setUserData,
+} from "../../../redux/user/user.actions";
 import { Wrap, DetailsWrap, ButtonsHolder, Slider } from "./card.styles";
 
 import Calculator from "../calculator/calculator.component";
@@ -11,9 +16,11 @@ import UserDetails from "./user-details/user-details.component";
 import { checkValidatorn } from "../../../helpers";
 
 const Card = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const user = useSelector((state) => state.user);
   const cartItems = useSelector((state) => state.shop.cartItems);
-  const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [buttonValidaton, setButtonValidaton] = useState(false);
 
@@ -23,7 +30,7 @@ const Card = () => {
     email: user.userData.email,
   });
   const [cardDetails, setCardDetails] = useState({
-    cardName: user.cardData.name,
+    cardName: user.cardData.cardName,
     number: user.cardData.number,
     expDate: user.cardData.expDate,
     cvv: user.cardData.cvv,
@@ -40,11 +47,17 @@ const Card = () => {
   };
 
   const handlePlaceOrder = () => {
-    if (!buttonValidaton) return;
-    if (cartItems.length === 0) {
-      alert("you have no cartItems in your cart");
+    if (!buttonValidaton) {
+      dispatch(addError("User and Card Details are required"));
       return;
     }
+    if (cartItems.length === 0) {
+      dispatch(addError("You have no items in your cart"));
+      return;
+    }
+    dispatch(setUserData(userDetails));
+    dispatch(setCardData(cardDetails));
+    history.push("/checkout/order");
   };
 
   return (

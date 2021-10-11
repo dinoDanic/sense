@@ -19,6 +19,7 @@ export const ContinueShopping = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.colors.ui.grayLight};
   padding-bottom: 20px;
   margin-bottom: 20px;
+  cursor: pointer;
 `;
 export const CartItems = styled.div``;
 export const CartInfo = styled.div`

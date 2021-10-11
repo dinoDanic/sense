@@ -1,6 +1,7 @@
 import React from "react";
 import { pageTransitionAni } from "../../theme/animations";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import {
   Wrap,
   Left,
@@ -15,10 +16,12 @@ import {
 import CartItem from "./cart-item/cart-item.component";
 import Card from "./card/card.component";
 import { useChartSum } from "../../hooks";
+import Box from "../../theme/ui-components/box/box.component";
 
 const Checkout = () => {
   const shop = useSelector((state) => state.shop);
   const sum = useChartSum();
+  const history = useHistory();
   return (
     <Wrap
       variants={pageTransitionAni}
@@ -27,7 +30,9 @@ const Checkout = () => {
       exit="exit"
     >
       <Left>
-        <ContinueShopping>Continue Shopping</ContinueShopping>
+        <ContinueShopping onClick={() => history.push("/")}>
+          Continue Shopping
+        </ContinueShopping>
         <CartItems>
           <CartInfo>
             <Text>Shopping Cart</Text>
@@ -37,7 +42,9 @@ const Checkout = () => {
           </CartInfo>
           <Items>
             {shop.cartItems.map((cartItem) => (
-              <CartItem cartItem={cartItem} />
+              <Box variant="item" key={cartItem.id}>
+                <CartItem cartItem={cartItem} />
+              </Box>
             ))}
           </Items>
         </CartItems>

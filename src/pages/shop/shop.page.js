@@ -18,7 +18,7 @@ const Shop = () => {
     >
       <AnimateSharedLayout type="crossfade">
         {shop.items.map((item) => (
-          <Item item={item} />
+          <Item key={item.id} item={item} />
         ))}
       </AnimateSharedLayout>
     </Wrap>

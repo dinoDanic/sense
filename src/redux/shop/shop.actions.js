@@ -18,3 +18,7 @@ export const removeOneAmount = (id) => ({
   type: shopActionsTypes.REMOVE_ONE_AMOUNT,
   payload: id,
 });
+
+export const clearCartData = () => ({
+  type: shopActionsTypes.CLEAR_CART,
+});

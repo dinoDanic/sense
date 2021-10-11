@@ -12,6 +12,7 @@ const INITIAL_STATE = {
     expDate: "",
     cvv: "",
   },
+  error: "",
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -25,6 +26,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cardData: action.payload,
+      };
+    case userActionsTypes.CLEAR_USER_DATA:
+      return INITIAL_STATE;
+
+    case userActionsTypes.ADD_ERROR:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

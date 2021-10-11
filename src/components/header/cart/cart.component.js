@@ -39,7 +39,7 @@ const Cart = () => {
         <ExtandHold />
         <Arrow />
         {shop.cartItems.map((item) => (
-          <CartItem item={item} />
+          <CartItem key={item.id} item={item} />
         ))}
         {shop.cartItems.length === 0 && <p>empty</p>}
       </Preview>

@@ -26,6 +26,8 @@ const couponsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         activeCoupons: newCoupons,
       };
+    case couponsActionsTypes.CLEAR_COUPONS:
+      return INITIAL_STATE;
     default:
       return state;
   }

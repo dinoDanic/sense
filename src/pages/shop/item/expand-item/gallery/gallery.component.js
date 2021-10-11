@@ -7,6 +7,7 @@ const Gallery = ({ gallery }) => {
   const [index, setIndex] = useState(0);
   useEffect(() => {
     setFirstImage(gallery[index].image);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
   return (
     <Wrap>
@@ -15,7 +16,7 @@ const Gallery = ({ gallery }) => {
       </MainImage>
       <SubImages>
         {gallery.map((image, i) => (
-          <SubImage image={image} index={i} setIndex={setIndex} />
+          <SubImage key={i} image={image} index={i} setIndex={setIndex} />
         ))}
       </SubImages>
     </Wrap>

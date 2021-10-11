@@ -9,3 +9,7 @@ export const removeCoupon = (couponName) => ({
   type: couponsActionsTypes.REMOVE_COUPON,
   payload: couponName,
 });
+
+export const clearCoupons = () => ({
+  type: couponsActionsTypes.CLEAR_COUPONS,
+});

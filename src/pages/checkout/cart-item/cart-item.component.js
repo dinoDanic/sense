@@ -24,7 +24,7 @@ import {
   removeOneAmount,
 } from "../../../redux/shop/shop.actions";
 
-const CartItem = ({ cartItem }) => {
+const CartItem = ({ cartItem, order }) => {
   const dispatch = useDispatch();
   const { name, value, gallery, description, amount, id } = cartItem;
   const [newValue, setNewValue] = useState(value);
@@ -57,18 +57,23 @@ const CartItem = ({ cartItem }) => {
         </InfoText>
       </Info>
       <RightHold>
-        <Amount>
-          <Remove onClick={handleRemove}>-</Remove>
-          <AmountValue>{amount}</AmountValue>
-          <Add onClick={handleAdd}>+</Add>
-        </Amount>
-        <Holder>
-          <Value>{Math.round(newValue * 100) / 100}</Value>
-          <Delete onClick={handleDelete}>
-            <Trash src={TrashImg} />
-          </Delete>
-        </Holder>
+        {!order && (
+          <>
+            <Amount>
+              <Remove onClick={handleRemove}>-</Remove>
+              <AmountValue>{amount}</AmountValue>
+              <Add onClick={handleAdd}>+</Add>
+            </Amount>
+            <Holder>
+              <Value>{Math.round(newValue * 100) / 100}</Value>
+              <Delete onClick={handleDelete}>
+                <Trash src={TrashImg} />
+              </Delete>
+            </Holder>
+          </>
+        )}
       </RightHold>
+      {order && <Amount order={order}>{amount}</Amount>}
     </Wrap>
   );
 };

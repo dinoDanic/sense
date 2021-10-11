@@ -9,3 +9,12 @@ export const setCardData = (cardData) => ({
   type: userActionsTypes.SET_CARD_DATA,
   payload: cardData,
 });
+
+export const clearUserData = () => ({
+  type: userActionsTypes.CLEAR_USER_DATA,
+});
+
+export const addError = (errorData) => ({
+  type: userActionsTypes.ADD_ERROR,
+  payload: errorData,
+});
