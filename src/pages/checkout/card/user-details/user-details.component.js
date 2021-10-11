@@ -18,23 +18,25 @@ const UserDetails = ({ setUserDetails, userDetails }) => {
         <Text>User Details</Text>
         <Input
           name="name"
+          value={userDetails.name}
           label="Full Name"
           placeholder="Jorge Step"
           onChange={handleChange}
         />
         <Input
+          value={userDetails.address}
           name="address"
           label="Address"
           placeholder="Somewhere far away 2a"
           onChange={handleChange}
         />
         <Input
+          value={userDetails.email}
           name="email"
           label="Email"
           type="email"
           onChange={handleChange}
         />
-        <Input name="number" label="Number" onChange={handleChange} />
       </UserHold>
     </DetailsHolder>
   );

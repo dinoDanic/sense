@@ -28,16 +28,32 @@ const CardDetails = ({ cardDetails, setCardDetails }) => {
         <CardImage src={CardImg3} />
         <CardImage src={CardImg4} />
       </CardType>
-      <Input name="name" label="Name on Card" onChange={handleChange} />
-      <Input name="cardNumber" label="Card Number" onChange={handleChange} />
+      <Input
+        value={cardDetails.name}
+        name="cardName"
+        label="Name on Card"
+        onChange={handleChange}
+      />
+      <Input
+        value={cardDetails.number}
+        name="number"
+        label="Card Number"
+        onChange={handleChange}
+      />
       <Inputs>
         <Input
+          value={cardDetails.expDate}
           name="expDate"
           label="Expiration Date"
           placeholder="MM/YY"
           onChange={handleChange}
         />
-        <Input name="cvv" label="CVV" onChange={handleChange} />
+        <Input
+          value={cardDetails.cvv}
+          name="cvv"
+          label="CVV"
+          onChange={handleChange}
+        />
       </Inputs>
     </DetailsHolder>
   );
