@@ -18,6 +18,7 @@ const MyOrders = () => {
           ))}
         </Orders>
       </Wrap>
+      {orders.length === 0 && <p>No orders..</p>}
     </TransitionPage>
   );
 };

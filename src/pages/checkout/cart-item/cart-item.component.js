@@ -73,7 +73,7 @@ const CartItem = ({ cartItem, order }) => {
           </>
         )}
       </RightHold>
-      {order && <Amount order={order}>{amount}</Amount>}
+      {order && <Amount order={true}>{amount}</Amount>}
     </Wrap>
   );
 };

@@ -28,7 +28,7 @@ const CouponItem = ({ coupon, totalPrice, order }) => {
   };
 
   return (
-    <Wrap order={order}>
+    <Wrap order={true}>
       <Hold>
         <Name>{name}</Name>
         <Value>-{decNumber(valueOfCoupon)} €</Value>

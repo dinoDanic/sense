@@ -94,7 +94,7 @@ const Calculator = ({ order }) => {
       <ActiveCoupons>
         {coupons.activeCoupons?.map((coupon) => (
           <CouponItem
-            order={order}
+            order={true}
             key={coupon.name}
             coupon={coupon}
             totalPrice={totalPrice}

@@ -9,6 +9,7 @@ import Shop from "./pages/shop/shop.page";
 import Checkout from "./pages/checkout/checkout.page";
 import Order from "./pages/order/order.page";
 import MyOrders from "./pages/my-orders/my-orders.page";
+import MyOrder from "./pages/my-order/my-order.page";
 
 function App() {
   return (
@@ -20,6 +21,12 @@ function App() {
           <Route exact path="/checkout" component={Checkout} key="checkout" />
           <Route exact path="/checkout/order" component={Order} key="orders" />
           <Route exact path="/my-orders" component={MyOrders} key="my-orders" />
+          <Route
+            exact
+            path="/my-orders/:id"
+            component={MyOrder}
+            key="my-order"
+          />
         </AnimatePresence>
       </Container>
       <Error />

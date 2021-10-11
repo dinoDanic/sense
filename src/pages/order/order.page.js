@@ -7,7 +7,6 @@ import { clearCartData } from "../../redux/shop/shop.actions";
 import {
   Wrap,
   Title,
-  OrderId,
   Image,
   ContentHold,
   CartItems,
@@ -26,6 +25,7 @@ import Calculator from "../checkout/calculator/calculator.component";
 import Button from "../../theme/ui-components/button/button.conponent";
 import { clearCoupons } from "../../redux/coupons/coupons.actions";
 import TransitionPage from "../../components/transition-page/transition-page.component";
+import { Link } from "react-router-dom";
 
 const Order = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Order = () => {
   const cartItems = useSelector((state) => state.shop.cartItems);
   const userData = useSelector((state) => state.user.userData);
 
-  const handleBack = () => {
+  const handleClear = () => {
     dispatch(clearUserData());
     dispatch(clearCartData());
     dispatch(clearCoupons());
@@ -53,7 +53,6 @@ const Order = () => {
         <ContentHold>
           <Image src={PartyImg} />
           <Title>Your order is complete!</Title>
-          <OrderId>OrderId: #001</OrderId>
         </ContentHold>
         <SubTitle>Ordered items</SubTitle>
         <CartItems>
@@ -81,7 +80,12 @@ const Order = () => {
           </Row>
         </UserHold>
         <HoldButton>
-          <Button onClick={handleBack}>Back to homepage</Button>
+          <Link to="/">
+            <Button onClick={handleClear}>Back to homepage</Button>
+          </Link>
+          <Link to="/my-orders">
+            <Button onClick={handleClear}>My Orders</Button>
+          </Link>
         </HoldButton>
       </Wrap>
     </TransitionPage>

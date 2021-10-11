@@ -53,4 +53,7 @@ export const HoldButton = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  button {
+    margin-right: 10px;
+  }
 `;
