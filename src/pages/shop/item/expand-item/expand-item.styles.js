@@ -27,6 +27,7 @@ export const Images = styled(motion.div)`
 `;
 export const Content = styled.div`
   flex: 1;
+  padding-top: 20px;
 `;
 export const EditName = styled.div`
   color: ${(props) => props.theme.colors.ui.primary};

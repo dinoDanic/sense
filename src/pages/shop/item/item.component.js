@@ -12,12 +12,12 @@ const Item = ({ item }) => {
     // hover: { scale: 0.98 },
   };
   const imgAni = {
-    hover: { scale: 1.05 },
-    tap: { scale: 1 },
+    hover: { scale: 1.05, y: -10 },
+    tap: { scale: 1, y: 0 },
   };
   const infoAni = {
-    hover: { scale: 1.05 },
-    tap: { scale: 1 },
+    hover: { scale: 1.05, x: 20 },
+    tap: { scale: 1, x: 0 },
   };
   return (
     <>

@@ -24,6 +24,7 @@ const expand = (theme) => `
 const product = (theme) => `
   height: 150px;
   justify-content: flex-end;
+  border: 1px solid ${theme.colors.ui.grayLight};
 `;
 
 const item = (theme) => `
