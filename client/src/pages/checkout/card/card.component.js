@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import {
   addError,
+  clearUserData,
   setCardData,
   setUserData,
 } from "../../../redux/user/user.actions";
@@ -16,6 +17,8 @@ import UserDetails from "./user-details/user-details.component";
 
 import { checkErrs, checkValidatorn } from "../../../helpers";
 import { createOrder } from "../../../redux/orders/orders.actions";
+import { clearCartData } from "../../../redux/shop/shop.actions";
+import { clearCoupons } from "../../../redux/coupons/coupons.actions";
 
 const Card = () => {
   const dispatch = useDispatch();

@@ -40,13 +40,6 @@ const Order = () => {
     history.push("/");
   };
 
-  useEffect(() => {
-    if (cartItems.length === 0) {
-      dispatch(addError("Something went wrong"));
-      history.push("/");
-    }
-  }, [cartItems, dispatch, history]);
-
   return (
     <TransitionPage>
       <Wrap>
