@@ -1,6 +1,6 @@
-## MERN React Shop
+## MERN Shop
 
-#### Simple shop made with React, Redux, Thunk, Styled Components, Framer Motion and Axios.
+#### Simple shop made with React, Redux, Thunk, Styled Components and Framer Motion
 
 #### Backend: MongoDB, Node.js
 
