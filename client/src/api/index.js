@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:5000";
+const url = "https://app-sense.herokuapp.com";
 
 export const createOrder = (data) => axios.post(`${url}/orders/new`, data);
 

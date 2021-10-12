@@ -16,7 +16,7 @@ app.use("/orders", ordersRoutes);
 mongoose
   .connect(process.env.DB_URL)
   .then(() => {
-    app.listen(process.env.DB_PORT || 5000);
-    console.log("connected to port", process.env.DB_PORT);
+    app.listen(process.env.PORT || 5000);
+    console.log("connected to port", process.env.PORT);
   })
   .catch((err) => console.log(err.message));
