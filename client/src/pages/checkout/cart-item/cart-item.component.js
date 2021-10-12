@@ -25,6 +25,7 @@ import {
 } from "../../../redux/shop/shop.actions";
 
 const CartItem = ({ cartItem, order }) => {
+  console.log(cartItem);
   const dispatch = useDispatch();
   const { name, value, gallery, description, amount, id } = cartItem;
   const [newValue, setNewValue] = useState(value);

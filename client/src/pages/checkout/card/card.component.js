@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import {
   addError,
-  createOrder,
   setCardData,
   setUserData,
 } from "../../../redux/user/user.actions";
@@ -16,6 +15,7 @@ import CardDetails from "./card-details/card-details.component";
 import UserDetails from "./user-details/user-details.component";
 
 import { checkValidatorn } from "../../../helpers";
+import { createOrder } from "../../../redux/orders/orders.actions";
 
 const Card = () => {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const Card = () => {
     dispatch(setCardData(cardDetails));
   };
 
-  const handlePlaceOrder = () => {
+  const handlePlaceOrder = async () => {
     if (!buttonValidaton) {
       dispatch(addError("User and Card Details are required"));
       return;
@@ -62,10 +62,13 @@ const Card = () => {
     const orderdata = {
       items: [...cartItems],
       userData: { ...userDetails },
-      id: uuidv4(),
+      // id: uuidv4(),
     };
-    dispatch(createOrder(orderdata));
-    history.push("/checkout/order");
+    const respond = await dispatch(createOrder(orderdata));
+    console.log(respond);
+    if (respond.statusText === "OK") {
+      history.push("/checkout/order");
+    }
   };
 
   return (

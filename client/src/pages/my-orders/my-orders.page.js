@@ -1,13 +1,19 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Title, Wrap, Orders } from "./my-orders.styles";
 
 import TransitionPage from "../../components/transition-page/transition-page.component";
 import OrderItem from "./order-item/order-item.component";
+import { getOrders } from "../../redux/orders/orders.actions";
 
 const MyOrders = () => {
-  const orders = useSelector((state) => state.user.orders);
+  const dispatch = useDispatch();
+  const orders = useSelector((state) => state.orders);
+  useEffect(() => {
+    console.log("get");
+    dispatch(getOrders());
+  }, []);
   return (
     <TransitionPage>
       <Wrap>

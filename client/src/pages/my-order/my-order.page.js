@@ -6,20 +6,28 @@ import TransitionPage from "../../components/transition-page/transition-page.com
 import Button from "../../theme/ui-components/button/button.conponent";
 import CartItem from "../checkout/cart-item/cart-item.component";
 
-import { Title, Wrap, OrderItem } from "./my-order.styles";
+import {
+  Title,
+  Wrap,
+  OrderItem,
+  Row,
+  OrderBy,
+  Item,
+  Value,
+} from "./my-order.styles";
 
 const MyOrder = () => {
-  const orders = useSelector((state) => state.user.orders);
+  const orders = useSelector((state) => state.orders);
   const history = useHistory();
   const orderId = history.location.pathname.split("/")[2];
   const [currentOrder, setCurrentOrder] = useState([]);
 
   useEffect(() => {
     setCurrentOrder(() => {
-      const order = orders.find((order) => order.id === orderId);
+      const order = orders.find((order) => order._id === orderId);
       return order;
     });
-    console.log(orders.length);
+    console.log(currentOrder);
   }, [currentOrder, orderId, orders]);
 
   const handleBack = () => {
@@ -27,9 +35,23 @@ const MyOrder = () => {
   };
   return (
     <TransitionPage>
-      {currentOrder && (
+      {currentOrder.userData && (
         <Wrap>
-          <Title>ORDER #{currentOrder.id}</Title>
+          <Title>ORDER #{currentOrder._id}</Title>
+          <OrderBy>
+            <Row>
+              <Item>Name: </Item>
+              <Value>{currentOrder.userData.name}</Value>
+            </Row>
+            <Row>
+              <Item>Address: </Item>
+              <Value>{currentOrder.userData.address}</Value>
+            </Row>
+            <Row>
+              <Item>Email: </Item>
+              <Value>{currentOrder.userData.email}</Value>
+            </Row>
+          </OrderBy>
           {currentOrder?.items?.map((order) => (
             <OrderItem key={order.id}>
               <CartItem order cartItem={order} />
