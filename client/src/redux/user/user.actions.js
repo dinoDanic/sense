@@ -18,3 +18,7 @@ export const addError = (errorData) => ({
   type: userActionsTypes.ADD_ERROR,
   payload: errorData,
 });
+
+export const clearError = () => ({
+  type: userActionsTypes.CLEAR_ERRORS,
+});

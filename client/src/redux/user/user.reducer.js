@@ -9,10 +9,10 @@ const INITIAL_STATE = {
   cardData: {
     cardName: "",
     number: "",
-    expDate: "",
-    cvv: "",
+    expDate: null,
+    cvv: null,
   },
-  error: "",
+  errors: [],
   orders: [],
 };
 
@@ -37,12 +37,17 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case userActionsTypes.ADD_ERROR:
       return {
         ...state,
-        error: action.payload,
+        errors: [...state.errors, action.payload],
       };
     case userActionsTypes.CREATE_ORDER:
       return {
         ...state,
         orders: [...state.orders, action.payload],
+      };
+    case userActionsTypes.CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: [],
       };
     default:
       return state;

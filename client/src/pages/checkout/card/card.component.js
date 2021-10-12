@@ -14,7 +14,7 @@ import Button from "../../../theme/ui-components/button/button.conponent";
 import CardDetails from "./card-details/card-details.component";
 import UserDetails from "./user-details/user-details.component";
 
-import { checkValidatorn } from "../../../helpers";
+import { checkErrs, checkValidatorn } from "../../../helpers";
 import { createOrder } from "../../../redux/orders/orders.actions";
 
 const Card = () => {
@@ -48,56 +48,62 @@ const Card = () => {
     dispatch(setCardData(cardDetails));
   };
 
-  const handlePlaceOrder = async () => {
-    if (!buttonValidaton) {
-      dispatch(addError("User and Card Details are required"));
-      return;
-    }
+  const handlePlaceOrder = async (e) => {
+    e.preventDefault();
+    const errMessage = checkErrs(userDetails, cardDetails);
+    errMessage.forEach((err) => {
+      dispatch(addError(err));
+    });
     if (cartItems.length === 0) {
-      dispatch(addError("You have no items in your cart"));
+      dispatch(addError({ errMessage: "You have no Items in cart" }));
       return;
     }
     dispatch(setUserData(userDetails));
     dispatch(setCardData(cardDetails));
+
     const orderdata = {
       items: [...cartItems],
       userData: { ...userDetails },
       _id: uuidv4(),
     };
     const respond = await dispatch(createOrder(orderdata));
-    console.log(respond);
     if (respond.statusText === "OK") {
       history.push("/checkout/order");
+    } else {
+      dispatch(addError({ errMessage: "Something went wrong" }));
     }
   };
 
   return (
     <Wrap>
-      <DetailsWrap>
-        <Slider animate={{ x: step === 1 ? 0 : "-100%" }}>
-          <UserDetails
-            setUserDetails={setUserDetails}
-            userDetails={userDetails}
-          />
-          <CardDetails
-            setCardDetails={setCardDetails}
-            cardDetails={cardDetails}
-          />
-        </Slider>
-      </DetailsWrap>
-      <Calculator />
-      <ButtonsHolder>
-        <Button color="green" onClick={handleDetailsButton}>
-          {step === 1 ? "Card Details" : "User Details"}
-        </Button>
-        <Button
-          validate={buttonValidaton}
-          color="green"
-          onClick={handlePlaceOrder}
-        >
-          Place Order
-        </Button>
-      </ButtonsHolder>
+      <form onSubmit={handlePlaceOrder}>
+        <DetailsWrap>
+          <Slider animate={{ x: step === 1 ? 0 : "-100%" }}>
+            <UserDetails
+              setUserDetails={setUserDetails}
+              userDetails={userDetails}
+            />
+            <CardDetails
+              setCardDetails={setCardDetails}
+              cardDetails={cardDetails}
+            />
+          </Slider>
+        </DetailsWrap>
+        <Calculator />
+        <ButtonsHolder>
+          <Button color="green" onClick={handleDetailsButton} type="button">
+            {step === 1 ? "Card Details" : "User Details"}
+          </Button>
+          <Button
+            validate={buttonValidaton}
+            color="green"
+            type="submit"
+            onClick={handlePlaceOrder}
+          >
+            Place Order
+          </Button>
+        </ButtonsHolder>
+      </form>
     </Wrap>
   );
 };

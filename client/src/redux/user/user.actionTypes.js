@@ -4,6 +4,7 @@ const userActionsTypes = {
   CLEAR_USER_DATA: "CLEAR_USER_DATA",
   ADD_ERROR: "ADD_ERROR",
   CREATE_ORDER: "CREATE_ORDER",
+  CLEAR_ERRORS: "CLEAR_ERRORS",
 };
 
 export default userActionsTypes;

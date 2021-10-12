@@ -21,4 +21,6 @@ export const Content = styled(motion.div)`
 export const Title = styled.div`
   font-weight: bold;
 `;
-export const Message = styled.div``;
+export const Message = styled.div`
+  font-size: ${(props) => props.theme.sizing.font.sm};
+`;
