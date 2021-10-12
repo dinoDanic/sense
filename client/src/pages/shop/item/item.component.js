@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import Box from "../../../theme/ui-components/box/box.component";
+
 import { ItemWrap, Image, HoldImage, Name, Value, Info } from "./item.styles";
+
+import Box from "../../../theme/ui-components/box/box.component";
 import ExpandItem from "./expand-item/expand-item.component";
 
 const Item = ({ item }) => {
@@ -9,14 +11,15 @@ const Item = ({ item }) => {
   const { name, image, value } = item;
   const itemAni = {};
   const boxAni = {
-    // hover: { scale: 0.98 },
+    hover: { scale: 0.97 },
+    tap: { scale: 1 },
   };
   const imgAni = {
-    hover: { scale: 1.05, y: -10 },
-    tap: { scale: 1, y: 0 },
+    hover: { scale: 1.05, x: -15 },
+    tap: { scale: 1, x: 0 },
   };
   const infoAni = {
-    hover: { scale: 1.05, x: 20 },
+    hover: { scale: 1.05, x: 15 },
     tap: { scale: 1, x: 0 },
   };
   return (

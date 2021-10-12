@@ -18,7 +18,6 @@ const OrderItem = ({ order, i }) => {
   const dispatch = useDispatch();
   const { items, _id } = order;
   const handleDelete = () => {
-    console.log("dleteing");
     dispatch(deleteOrderById(_id));
   };
   return (

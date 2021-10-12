@@ -7,6 +7,7 @@ export const Preview = styled(motion.div)`
   background-color: ${(props) => props.theme.colors.ui.primaryLight};
   padding: ${(props) => props.theme.spacing.padding.lg};
   border-radius: ${(props) => props.theme.sizing.border.md};
+  box-shadow: ${(props) => props.theme.colors.shadows.default};
   color: white;
   width: 200px;
   font-weight: 300;
@@ -34,6 +35,10 @@ export const Wrap = styled.div`
 `;
 export const Image = styled.img`
   width: 36px;
+  transition: 0.2s ease all;
+  &:hover {
+    transform: scale(1.1) rotate(7deg);
+  }
 `;
 
 export const CartCount = styled(motion.div)`

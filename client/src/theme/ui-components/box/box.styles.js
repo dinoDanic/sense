@@ -16,6 +16,7 @@ const expand = (theme) => `
   position: fixed;
   top: 20%;
   z-index: 999;
+  flex-wrap: wrap;
   flex-direction: row;
   gap: 20px;
   min-height: 400px;

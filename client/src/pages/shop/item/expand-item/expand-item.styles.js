@@ -24,8 +24,10 @@ export const Info = styled(motion.div)`
 
 export const Images = styled(motion.div)`
   flex: 1;
+  min-width: 300px;
 `;
 export const Content = styled.div`
+  min-width: 300px;
   flex: 1;
   padding-top: 20px;
 `;

@@ -34,6 +34,7 @@ export const getOrder = async (req, res) => {
 export const deleteOrder = async (req, res) => {
   const { id } = req.params;
   try {
+    await Order.fidby;
     await Order.findOneAndDelete(id);
     res.json({ message: "deleted" });
   } catch (error) {}

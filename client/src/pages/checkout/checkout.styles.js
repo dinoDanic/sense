@@ -5,13 +5,21 @@ export const Wrap = styled(motion.div)`
   display: flex;
   gap: 20px;
   margin-top: 100px;
+  flex-wrap: wrap;
 `;
 
 export const Left = styled.div`
   flex: 0.7;
+  min-width: 500px;
+  @media ${(props) => props.theme.sizing.screen.sm} {
+    flex: 1;
+  }
 `;
 export const Right = styled.div`
   flex: 0.3;
+  @media ${(props) => props.theme.sizing.screen.sm} {
+    flex: 1;
+  }
 `;
 
 export const ContinueShopping = styled.div`

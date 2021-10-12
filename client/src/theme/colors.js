@@ -15,5 +15,6 @@ export const colors = {
   },
   shadows: {
     default: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;",
+    small: "rgba(0, 0, 0, 0.35) 0px 5px 15px;",
   },
 };

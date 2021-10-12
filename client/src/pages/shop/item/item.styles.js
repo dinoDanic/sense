@@ -8,6 +8,9 @@ export const ItemWrap = styled(motion.div)`
   cursor: pointer;
   margin-top: 60px;
   position: relative;
+  @media ${(props) => props.theme.sizing.screen.sm} {
+    max-width: 100%;
+  }
 `;
 
 export const Image = styled(motion.img)`

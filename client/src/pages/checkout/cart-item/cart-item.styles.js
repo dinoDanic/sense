@@ -8,6 +8,9 @@ export const Info = styled.div`
   display: flex;
   align-items: center;
   min-width: 300px;
+  @media ${(props) => props.theme.sizing.screen.sm} {
+    min-width: auto;
+  }
 `;
 
 export const Image = styled.img`

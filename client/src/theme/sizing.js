@@ -9,4 +9,7 @@ export const sizing = {
     sm: "0.8rem",
     xs: "0.7rem",
   },
+  screen: {
+    sm: "(max-width: 700px)",
+  },
 };
