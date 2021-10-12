@@ -54,6 +54,7 @@ const Card = () => {
     errMessage.forEach((err) => {
       dispatch(addError(err));
     });
+    if (errMessage.length > 0) return;
     if (cartItems.length === 0) {
       dispatch(addError({ errMessage: "You have no Items in cart" }));
       return;

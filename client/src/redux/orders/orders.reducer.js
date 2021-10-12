@@ -9,6 +9,10 @@ const ordersReducer = (state = INITIAL_STATE, action) => {
 
     case ordersActionsTypes.GET_ORDERS:
       return action.payload;
+    case ordersActionsTypes.DELETE_ORDER:
+      const copy = [...state];
+      const deleted = copy.filter((item) => item._id !== action.payload);
+      return deleted;
     default:
       return state;
   }

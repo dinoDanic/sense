@@ -33,6 +33,7 @@ export const getOrders = () => async (dispatch) => {
   });
   try {
     const respond = await api.getOrders();
+
     dispatch({
       type: ordersActionsTypes.GET_ORDERS,
       payload: respond.data,
@@ -57,15 +58,30 @@ export const getOrderById = (id) => async (dispatch) => {
       payload: true,
     });
     const respond = await api.getOrderById(id);
+
     dispatch({
       type: userActionsTypes.SET_LOADING,
       payload: false,
     });
+
     return respond.data;
   } catch (error) {
     dispatch({
       type: userActionsTypes.SET_LOADING,
       payload: false,
     });
+  }
+};
+
+export const deleteOrderById = (id) => async (dispatch) => {
+  try {
+    const respond = await api.deleteOrderById(id);
+    console.log(respond);
+    dispatch({
+      type: ordersActionsTypes.DELETE_ORDER,
+      payload: id,
+    });
+  } catch (error) {
+    console.log(error.message);
   }
 };
