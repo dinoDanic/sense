@@ -17,6 +17,7 @@ const ordersSchema = mongoose.Schema({
     address: String,
     email: String,
   },
+  _id: String,
 });
 
 export const Order = mongoose.model("orders", ordersSchema);

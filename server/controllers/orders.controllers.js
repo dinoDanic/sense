@@ -20,3 +20,21 @@ export const getOrders = async (req, res) => {
     console.log(error.message);
   }
 };
+
+export const getOrder = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const order = await Order.findById(id);
+    res.json(order);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const deleteOrder = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Order.findOneAndDelete(id);
+    res.json({ message: "deleted" });
+  } catch (error) {}
+};

@@ -23,3 +23,10 @@ export const getOrders = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const getOrderById = (id) => async (dispatch) => {
+  try {
+    const respond = await api.getOrderById(id);
+    return respond.data;
+  } catch (error) {}
+};
