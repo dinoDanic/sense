@@ -14,6 +14,10 @@ const withOrder = (theme) => `
     transform: translateX(-0px) !important;
     pointer-events: none;
   }
+  &:hover ${Remove} {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
 `;
 
 export const Value = styled.div`
@@ -41,6 +45,7 @@ export const Remove = styled.div`
 `;
 export const Wrap = styled.div`
   ${({ order, theme }) => order && withOrder(theme)};
+
   overflow: hidden;
   height: 20px;
   width: 100%;

@@ -10,8 +10,6 @@ const Error = () => {
   const [x, setX] = useState("-155%");
 
   useEffect(() => {
-    console.log("use");
-    console.log(errors);
     let timer;
     if (errors.length > 0) {
       setX(0);

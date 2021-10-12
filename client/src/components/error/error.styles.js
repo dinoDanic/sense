@@ -8,6 +8,7 @@ export const Wrap = styled(motion.div)`
   display: flex;
   justify-content: center;
   text-align: center;
+  pointer-events: none;
 `;
 
 export const Content = styled(motion.div)`

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
-import { addError, clearUserData } from "../../redux/user/user.actions";
+import { clearUserData } from "../../redux/user/user.actions";
 import { clearCartData } from "../../redux/shop/shop.actions";
 import {
   Wrap,
@@ -51,12 +51,12 @@ const Order = () => {
         <CartItems>
           {cartItems?.map((item) => (
             <CartHold key={item.id}>
-              <CartItem order cartItem={item} />
+              <CartItem order={true} cartItem={item} />
             </CartHold>
           ))}
         </CartItems>
         <SubTitle>Price</SubTitle>
-        <Calculator order />
+        <Calculator order={true} />
         <SubTitle>User</SubTitle>
         <UserHold>
           <Row>

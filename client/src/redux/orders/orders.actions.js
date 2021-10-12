@@ -75,8 +75,7 @@ export const getOrderById = (id) => async (dispatch) => {
 
 export const deleteOrderById = (id) => async (dispatch) => {
   try {
-    const respond = await api.deleteOrderById(id);
-    console.log(respond);
+    await api.deleteOrderById(id);
     dispatch({
       type: ordersActionsTypes.DELETE_ORDER,
       payload: id,

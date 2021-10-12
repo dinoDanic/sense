@@ -24,8 +24,7 @@ import {
   removeOneAmount,
 } from "../../../redux/shop/shop.actions";
 
-const CartItem = ({ cartItem, order }) => {
-  console.log(cartItem);
+const CartItem = ({ cartItem, order = false }) => {
   const dispatch = useDispatch();
   const { name, value, gallery, description, amount, id } = cartItem;
   const [newValue, setNewValue] = useState(value);
@@ -74,7 +73,7 @@ const CartItem = ({ cartItem, order }) => {
           </>
         )}
       </RightHold>
-      {order && <Amount order={true}>{amount}</Amount>}
+      {order && <Amount order={order}>{amount}</Amount>}
     </Wrap>
   );
 };

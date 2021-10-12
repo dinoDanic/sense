@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import {
   addError,
-  clearUserData,
   setCardData,
   setUserData,
 } from "../../../redux/user/user.actions";
@@ -17,8 +16,6 @@ import UserDetails from "./user-details/user-details.component";
 
 import { checkErrs, checkValidatorn } from "../../../helpers";
 import { createOrder } from "../../../redux/orders/orders.actions";
-import { clearCartData } from "../../../redux/shop/shop.actions";
-import { clearCoupons } from "../../../redux/coupons/coupons.actions";
 
 const Card = () => {
   const dispatch = useDispatch();
@@ -80,34 +77,32 @@ const Card = () => {
 
   return (
     <Wrap>
-      <form onSubmit={handlePlaceOrder}>
-        <DetailsWrap>
-          <Slider animate={{ x: step === 1 ? 0 : "-100%" }}>
-            <UserDetails
-              setUserDetails={setUserDetails}
-              userDetails={userDetails}
-            />
-            <CardDetails
-              setCardDetails={setCardDetails}
-              cardDetails={cardDetails}
-            />
-          </Slider>
-        </DetailsWrap>
-        <Calculator />
-        <ButtonsHolder>
-          <Button color="green" onClick={handleDetailsButton} type="button">
-            {step === 1 ? "Card Details" : "User Details"}
-          </Button>
-          <Button
-            validate={buttonValidaton}
-            color="green"
-            type="submit"
-            onClick={handlePlaceOrder}
-          >
-            Place Order
-          </Button>
-        </ButtonsHolder>
-      </form>
+      <DetailsWrap>
+        <Slider animate={{ x: step === 1 ? 0 : "-100%" }}>
+          <UserDetails
+            setUserDetails={setUserDetails}
+            userDetails={userDetails}
+          />
+          <CardDetails
+            setCardDetails={setCardDetails}
+            cardDetails={cardDetails}
+          />
+        </Slider>
+      </DetailsWrap>
+      <Calculator />
+      <ButtonsHolder>
+        <Button color="green" onClick={handleDetailsButton} type="button">
+          {step === 1 ? "Card Details" : "User Details"}
+        </Button>
+        <Button
+          validate={buttonValidaton}
+          color="green"
+          type="submit"
+          onClick={handlePlaceOrder}
+        >
+          Place Order
+        </Button>
+      </ButtonsHolder>
     </Wrap>
   );
 };

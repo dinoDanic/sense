@@ -9,8 +9,8 @@ const INITIAL_STATE = {
   cardData: {
     cardName: "",
     number: "",
-    expDate: null,
-    cvv: null,
+    expDate: "",
+    cvv: "",
   },
   errors: [],
   orders: [],

@@ -59,7 +59,7 @@ const Calculator = ({ order }) => {
       (coupon) => coupon.name === couponCode
     );
     if (!gotCoupon) {
-      dispatch(addError("No Coupons Found "));
+      dispatch(addError({ errMessage: "No Coupons Found" }));
       setIsCoupon(false);
       return;
     } else {
@@ -70,12 +70,12 @@ const Calculator = ({ order }) => {
           !gotCoupon.combine &&
           coupons.activeCoupons.find((coupon) => coupon.combine === false)
         ) {
-          dispatch(addError("You Can't combine this Coupon"));
+          dispatch(addError({ errMessage: "You can't combine this coupon" }));
           setIsCoupon(false);
           return;
         } else {
           if (coupons.activeCoupons.includes(gotCoupon)) {
-            dispatch(addError("Coupon Allready Applied"));
+            dispatch(addError({ errMessage: "Coupon Allready Apllied" }));
             return;
           }
           dispatch(addCoupon(gotCoupon));
@@ -94,7 +94,7 @@ const Calculator = ({ order }) => {
       <ActiveCoupons>
         {coupons.activeCoupons?.map((coupon) => (
           <CouponItem
-            order={true}
+            order={order}
             key={coupon.name}
             coupon={coupon}
             totalPrice={totalPrice}
