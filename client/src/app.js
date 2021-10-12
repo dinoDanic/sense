@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 
 import Header from "./components/header/header.component";
 import Error from "./components/error/error.component";
+import Loading from "./components/loading/loading.component";
 
 import Shop from "./pages/shop/shop.page";
 import Checkout from "./pages/checkout/checkout.page";
@@ -30,6 +31,7 @@ function App() {
         </AnimatePresence>
       </Container>
       <Error />
+      <Loading />
     </Holder>
   );
 }

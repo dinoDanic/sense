@@ -26,7 +26,6 @@ const MyOrder = () => {
   useEffect(() => {
     const getOrder = async () => {
       const respond = await dispatch(getOrderById(orderId));
-      console.log(respond);
       setCurrentOrder(respond);
     };
     getOrder();

@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   },
   errors: [],
   orders: [],
+  loading: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -48,6 +49,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         errors: [],
+      };
+    case userActionsTypes.SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;

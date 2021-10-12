@@ -22,3 +22,8 @@ export const addError = (errorData) => ({
 export const clearError = () => ({
   type: userActionsTypes.CLEAR_ERRORS,
 });
+
+export const setLoading = (state) => ({
+  type: userActionsTypes.SET_LOADING,
+  payload: state,
+});

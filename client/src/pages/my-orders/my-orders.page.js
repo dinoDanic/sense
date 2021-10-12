@@ -10,10 +10,12 @@ import { getOrders } from "../../redux/orders/orders.actions";
 const MyOrders = () => {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.orders);
+  const loading = useSelector((state) => state.user.loading);
+
   useEffect(() => {
-    console.log("get");
     dispatch(getOrders());
-  }, []);
+  }, [dispatch]);
+
   return (
     <TransitionPage>
       <Wrap>
@@ -24,7 +26,7 @@ const MyOrders = () => {
           ))}
         </Orders>
       </Wrap>
-      {orders.length === 0 && <p>No orders..</p>}
+      {orders.length === 0 && !loading && <p>No orders..</p>}
     </TransitionPage>
   );
 };
