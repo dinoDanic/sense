@@ -14,7 +14,7 @@ import {
   HoldInfo,
   Layer,
 } from "./expand-item.styles";
-import { HoldImage, Image, Name } from "../item.styles";
+import { HoldImage, Image, Name } from "../shop-item.styles";
 
 import Gallery from "./gallery/gallery.component";
 
