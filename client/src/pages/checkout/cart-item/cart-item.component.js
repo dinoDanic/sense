@@ -23,16 +23,22 @@ import {
   removeItemFromCart,
   removeOneAmount,
 } from "../../../redux/shop/shop.actions";
+import { calPromotion, decNumber } from "../../../helpers";
 
 const CartItem = ({ cartItem, order = false }) => {
   const dispatch = useDispatch();
-  const { name, value, gallery, description, amount, id } = cartItem;
-  const [newValue, setNewValue] = useState(value);
+  const { name, value, gallery, description, amount, id, promotion } = cartItem;
+  const [fullPrice, setFullPrice] = useState(value * amount);
+  const [promotionValue, setPromotionValue] = useState(0);
   const frontImg = gallery[0].image;
 
   useEffect(() => {
-    setNewValue(value * amount);
-  }, [amount, value]);
+    setFullPrice(value * amount - promotionValue);
+  }, [amount, promotionValue, value]);
+
+  useEffect(() => {
+    setPromotionValue(calPromotion(promotion, amount));
+  }, [amount, promotion]);
 
   const handleAdd = () => {
     dispatch(addOneAmount(id));
@@ -65,7 +71,7 @@ const CartItem = ({ cartItem, order = false }) => {
               <Add onClick={handleAdd}>+</Add>
             </Amount>
             <Holder>
-              <Value>{Math.round(newValue * 100) / 100}</Value>
+              <Value>{decNumber(fullPrice)}</Value>
               <Delete onClick={handleDelete}>
                 <Trash src={TrashImg} />
               </Delete>

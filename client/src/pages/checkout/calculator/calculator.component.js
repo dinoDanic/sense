@@ -11,7 +11,7 @@ import {
   ActiveCoupons,
 } from "./calculator.styles";
 
-import { decNumber } from "../../../helpers";
+import { calPromotion, decNumber } from "../../../helpers";
 
 import Button from "../../../theme/ui-components/button/button.conponent";
 import Input from "../../../theme/ui-components/input/input.component";
@@ -23,24 +23,39 @@ const Calculator = ({ order }) => {
   const shop = useSelector((state) => state.shop);
   const coupons = useSelector((state) => state.coupons);
   const [isCoupon, setIsCoupon] = useState(false);
-  const [priceWithCoupons, setPriceWithCoupons] = useState(0);
+  const [priceWithCoupons, setPriceWithCoupons] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [couponCode, setCouponCode] = useState("");
+  const [couponNumberValue, setCouponNumberValue] = useState(0);
 
   useEffect(() => {
     if (!shop.cartItems) return;
-    const sum = shop.cartItems.reduce(
-      (prev, next) => prev + next.value * next.amount,
-      0
-    );
+    const sum = shop.cartItems.reduce((prev, next) => {
+      if (next.promotion) {
+        const promotionValue = calPromotion(next.promotion, next.amount);
+        return prev + next.value * next.amount - promotionValue;
+      }
+      return prev + next.value * next.amount;
+    }, 0);
     setTotalPrice(sum);
   }, [shop]);
+
+  useEffect(() => {
+    setCouponNumberValue(
+      coupons.activeCoupons.reduce((prev, next) => {
+        if (next.type === "number") {
+          return prev + next.value;
+        }
+        return prev;
+      }, 0)
+    );
+  }, [coupons.activeCoupons]);
 
   useEffect(() => {
     const sum = coupons.activeCoupons.reduce((prev, next) => {
       if (next.type === "percent") {
         const percent = next.value;
-        const percentValue = (totalPrice / 100) * percent;
+        const percentValue = ((totalPrice - couponNumberValue) / 100) * percent;
         return prev - percentValue;
       }
       if (next.type === "number") {
@@ -51,7 +66,7 @@ const Calculator = ({ order }) => {
     }, totalPrice);
 
     setPriceWithCoupons(sum);
-  }, [coupons, totalPrice]);
+  }, [couponNumberValue, coupons.activeCoupons, totalPrice]);
 
   const handleCoupon = (e) => {
     e.preventDefault();
@@ -98,6 +113,7 @@ const Calculator = ({ order }) => {
             key={coupon.name}
             coupon={coupon}
             totalPrice={totalPrice}
+            couponNumberValue={couponNumberValue}
           />
         ))}
       </ActiveCoupons>

@@ -6,7 +6,7 @@ import { Hold, Name, Remove, Value, Wrap } from "./coupon-item.styles";
 import { decNumber } from "../../../../helpers";
 import { removeCoupon } from "../../../../redux/coupons/coupons.actions";
 
-const CouponItem = ({ coupon, totalPrice, order }) => {
+const CouponItem = ({ coupon, totalPrice, order, couponNumberValue }) => {
   const dispatch = useDispatch();
   const [valueOfCoupon, setValueOfCoupon] = useState(0);
   const { name, value, type } = coupon;
@@ -14,14 +14,14 @@ const CouponItem = ({ coupon, totalPrice, order }) => {
     setValueOfCoupon(() => {
       let price;
       if (type === "percent") {
-        price = (totalPrice * value) / 100;
+        price = ((totalPrice - couponNumberValue) * value) / 100;
       }
       if (type === "number") {
         price = value;
       }
       return price;
     });
-  }, [totalPrice, type, value]);
+  }, [couponNumberValue, totalPrice, type, value]);
 
   const handleRemove = () => {
     dispatch(removeCoupon(coupon.name));

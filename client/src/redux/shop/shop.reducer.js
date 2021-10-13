@@ -9,7 +9,6 @@ const INITIAL_STATE = {
 const shopReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case shopActionsTypes.ADD_ITEM_TO_CART:
-      console.log(action.payload);
       const current = state.cartItems.find(
         (item) => item.id === action.payload.id
       );

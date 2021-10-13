@@ -29,6 +29,7 @@ const storeMock = [
     value: 24.99,
     image: MotionImg,
     id: 2,
+    promotion: { every: 3, value: 9.97 },
     gallery: [
       { name: "image2", id: 2, image: camera2 },
       { name: "image1", id: 1, image: camera1 },
@@ -55,6 +56,7 @@ const storeMock = [
     value: 19.99,
     image: SmokeImg,
     id: 4,
+    promotion: { every: 2, value: 4.98 }, // stavi value ovde
     gallery: [
       { name: "image1", id: 1, image: camera1 },
       { name: "image2", id: 2, image: camera2 },

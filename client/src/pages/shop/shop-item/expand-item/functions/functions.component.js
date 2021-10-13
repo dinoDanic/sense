@@ -23,7 +23,6 @@ const Functions = ({ item }) => {
 
   const handleAddToCart = () => {
     dispatch(addItemToCart(newItem));
-    console.log(newItem);
   };
 
   const handleAdd = () => {

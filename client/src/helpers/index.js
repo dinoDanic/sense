@@ -1,5 +1,6 @@
 export const decNumber = (number) => {
   // return (Math.round(number * 100) / 100).toFixed(2);
+  if (number === null) return;
   const newNum = number.toFixed(2);
   return newNum;
 };
@@ -51,4 +52,14 @@ export const checkErrs = (userDetails, cardDetails) => {
     errs.push({ name: "cvv", errMessage: "CVV Number Empty" });
   }
   return errs;
+};
+
+export const calPromotion = (promotion, amount) => {
+  if (!promotion) return 0;
+  const promotionTime = amount / promotion.every;
+  if (Number.isInteger(promotionTime)) {
+    return promotionTime * promotion.value;
+  } else {
+    return 0;
+  }
 };
