@@ -71,7 +71,6 @@ const Card = () => {
       _id: uuidv4(),
     };
     const respond = await dispatch(createOrder(orderdata));
-    console.log(respond.data);
     if (respond.statusText === "OK") {
       history.push("/checkout/order");
     } else {
