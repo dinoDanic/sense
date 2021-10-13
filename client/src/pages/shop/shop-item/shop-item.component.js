@@ -12,6 +12,7 @@ import {
   AddToCart,
   CartImage,
   Wrap,
+  Promotion,
 } from "./shop-item.styles";
 import { shopItemsAni } from "../../../theme/animations";
 import cartImg from "../../../img/addToCart2.png";
@@ -24,7 +25,7 @@ import { addItemToCart } from "../../../redux/shop/shop.actions";
 const ShopItem = ({ item }) => {
   const dispatch = useDispatch();
   const [expand, setExpand] = useState(false);
-  const { name, image, value } = item;
+  const { name, image, value, promotion } = item;
 
   const handleToBag = () => {
     dispatch(addItemToCart(item));
@@ -40,6 +41,11 @@ const ShopItem = ({ item }) => {
           variants={shopItemsAni.boxAni}
         >
           <Box layoutId={name} onClick={() => setExpand(true)}>
+            {promotion && (
+              <Promotion>
+                Promo {promotion.every} for {promotion.for} €
+              </Promotion>
+            )}
             {image && (
               <HoldImage variants={shopItemsAni.imgAni}>
                 <Image src={image} layoutId={`image ${name}`} />
@@ -47,7 +53,9 @@ const ShopItem = ({ item }) => {
             )}
             <Info variants={shopItemsAni.infoAni} layoutId={`info ${name}`}>
               <Name layoutId={`name ${name}`}>{name}</Name>
-              <Value layoutId={`value ${name}`}>{value}</Value>
+              <Value layoutId={`value ${name}`}>
+                {value} <span>€</span>
+              </Value>
             </Info>
           </Box>
         </ItemWrap>

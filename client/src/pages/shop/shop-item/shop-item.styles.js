@@ -66,8 +66,23 @@ export const Name = styled(motion.div)`
 
 export const Value = styled.div`
   color: ${(props) => props.theme.colors.ui.grayDark};
+  span {
+    font-size: ${(props) => props.theme.sizing.font.sm};
+    color: ${(props) => props.theme.colors.ui.grayDark};
+  }
 `;
 
 export const CartImage = styled.img`
   width: 100%;
+`;
+
+export const Promotion = styled.div`
+  font-size: ${(props) => props.theme.sizing.font.sm};
+  padding: 4px 10px;
+  background-color: ${(props) => props.theme.colors.ui.primaryLight};
+  color: white;
+  width: fit-content;
+  border-radius: ${(props) => props.theme.sizing.border.sm};
+  opacity: 0.6;
+  position: absolute;
 `;
