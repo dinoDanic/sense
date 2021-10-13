@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
 import TransitionPage from "../../components/transition-page/transition-page.component";
+import { getDate } from "../../helpers";
 import { getOrderById } from "../../redux/orders/orders.actions";
 import Button from "../../theme/ui-components/button/button.conponent";
 import CartItem from "../checkout/cart-item/cart-item.component";
@@ -51,6 +52,10 @@ const MyOrder = () => {
             <Row>
               <Item>Email: </Item>
               <Value>{currentOrder.userData.email}</Value>
+            </Row>
+            <Row>
+              <Item>Date: </Item>
+              <Value>{getDate(currentOrder.created)}</Value>
             </Row>
           </OrderBy>
           {currentOrder?.items?.map((order) => (

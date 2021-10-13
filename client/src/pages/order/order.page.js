@@ -51,12 +51,13 @@ const Order = () => {
         <CartItems>
           {cartItems?.map((item) => (
             <CartHold key={item.id}>
-              <CartItem order={true} cartItem={item} />
+              {/* ovaj buga */}
+              <CartItem order cartItem={item} />
             </CartHold>
           ))}
         </CartItems>
         <SubTitle>Price</SubTitle>
-        <Calculator order={true} />
+        <Calculator order />
         <SubTitle>User</SubTitle>
         <UserHold>
           <Row>

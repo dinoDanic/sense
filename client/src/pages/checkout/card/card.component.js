@@ -22,6 +22,7 @@ const Card = () => {
   const history = useHistory();
 
   const user = useSelector((state) => state.user);
+  const activeCoupons = useSelector((state) => state.coupons.activeCoupons);
   const cartItems = useSelector((state) => state.shop.cartItems);
   const [step, setStep] = useState(1);
   const [buttonValidaton, setButtonValidaton] = useState(false);
@@ -65,9 +66,12 @@ const Card = () => {
     const orderdata = {
       items: [...cartItems],
       userData: { ...userDetails },
+      created: new Date(),
+      coupons: [...activeCoupons],
       _id: uuidv4(),
     };
     const respond = await dispatch(createOrder(orderdata));
+    console.log(respond.data);
     if (respond.statusText === "OK") {
       history.push("/checkout/order");
     } else {

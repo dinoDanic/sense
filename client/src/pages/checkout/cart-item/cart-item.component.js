@@ -25,7 +25,7 @@ import {
 } from "../../../redux/shop/shop.actions";
 import { calPromotion, decNumber } from "../../../helpers";
 
-const CartItem = ({ cartItem, order = false }) => {
+const CartItem = ({ cartItem, order }) => {
   const dispatch = useDispatch();
   const { name, value, gallery, description, amount, id, promotion } = cartItem;
   const [fullPrice, setFullPrice] = useState(value * amount);
@@ -79,7 +79,7 @@ const CartItem = ({ cartItem, order = false }) => {
           </>
         )}
       </RightHold>
-      {order && <Amount order={order}>{amount}</Amount>}
+      {order && <Amount order="true">{amount}</Amount>}
     </Wrap>
   );
 };

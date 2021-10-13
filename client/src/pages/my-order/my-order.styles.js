@@ -21,6 +21,7 @@ export const OrderBy = styled.div`
 export const Row = styled.div`
   display: flex;
   font-size: ${(props) => props.theme.sizing.font.sm};
+  margin-bottom: 3px;
 `;
 export const Item = styled.div`
   width: 100px;

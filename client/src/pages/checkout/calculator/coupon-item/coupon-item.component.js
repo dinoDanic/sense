@@ -7,6 +7,7 @@ import { decNumber } from "../../../../helpers";
 import { removeCoupon } from "../../../../redux/coupons/coupons.actions";
 
 const CouponItem = ({ coupon, totalPrice, order, couponNumberValue }) => {
+  console.log(order);
   const dispatch = useDispatch();
   const [valueOfCoupon, setValueOfCoupon] = useState(0);
   const { name, value, type } = coupon;

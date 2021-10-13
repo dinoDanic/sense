@@ -18,6 +18,8 @@ const ordersSchema = mongoose.Schema({
     email: String,
   },
   _id: String,
+  created: Date,
+  coupons: [],
 });
 
 export const Order = mongoose.model("orders", ordersSchema);

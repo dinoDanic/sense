@@ -63,3 +63,17 @@ export const calPromotion = (promotion, amount) => {
     return 0;
   }
 };
+
+export const getDate = (date) => {
+  const d = new Date(date);
+  const month = d.getMonth();
+  const day = d.getDate();
+  const year = d.getFullYear();
+
+  const h = d.getHours();
+  const m = d.getMinutes();
+
+  return `${day}.${month}.${year} at ${h > 10 ? h : `0${h}`}:${
+    m > 10 ? m : `0${m}`
+  }h`;
+};
