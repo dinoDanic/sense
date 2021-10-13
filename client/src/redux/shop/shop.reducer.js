@@ -9,32 +9,31 @@ const INITIAL_STATE = {
 const shopReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case shopActionsTypes.ADD_ITEM_TO_CART:
-      const findCurrent = state.cartItems.filter(
+      console.log(action.payload);
+      const current = state.cartItems.find(
         (item) => item.id === action.payload.id
       );
-      const current = findCurrent[0];
       if (!current) {
         const newItem = {
           ...action.payload,
-          amount: 1,
+          amount: action.payload.amount || 1,
         };
         return {
           ...state,
           cartItems: [...state.cartItems, newItem],
         };
-      } else {
-        const newItem = {
-          ...current,
-          amount: current.amount + 1,
-        };
-        const deleteOld = state.cartItems.filter(
-          (item) => item.id !== action.payload.id
-        );
-        return {
-          ...state,
-          cartItems: [...deleteOld, newItem],
-        };
       }
+      const newItem = {
+        ...action.payload,
+        amount: current.amount + action.payload.amount || current.amount + 1,
+      };
+      const deleteOld = state.cartItems.filter(
+        (item) => item.id !== action.payload.id
+      );
+      return {
+        ...state,
+        cartItems: [...deleteOld, newItem],
+      };
 
     case shopActionsTypes.REMOVE_ITEM_FROM_CART:
       const removeItem = state.cartItems.filter(
