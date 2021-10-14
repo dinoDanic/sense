@@ -85,6 +85,7 @@ const Calculator = ({ order }) => {
         // ako ima kupona
         if (!gotCoupon.combine) {
           dispatch(addError({ errMessage: "You can not combine this coupon" }));
+          setIsCoupon(false);
           return;
         }
         const gotFalseCombine = coupons.activeCoupons.find(
@@ -92,6 +93,8 @@ const Calculator = ({ order }) => {
         );
         if (gotFalseCombine) {
           dispatch(addError({ errMessage: "You can not combine this coupon" }));
+          setIsCoupon(false);
+          return;
         } else {
           dispatch(addCoupon(gotCoupon));
         }
