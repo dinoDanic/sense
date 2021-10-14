@@ -78,21 +78,21 @@ const Calculator = ({ order }) => {
       setIsCoupon(false);
       return;
     } else {
+      // ako nema kupona
       if (!coupons.activeCoupons.length) {
         dispatch(addCoupon(gotCoupon));
       } else {
-        if (
-          !gotCoupon.combine &&
-          coupons.activeCoupons.find((coupon) => coupon.combine === false)
-        ) {
-          dispatch(addError({ errMessage: "You can't combine this coupon" }));
-          setIsCoupon(false);
+        // ako ima kupona
+        if (!gotCoupon.combine) {
+          dispatch(addError({ errMessage: "You can not combine this coupon" }));
           return;
+        }
+        const gotFalseCombine = coupons.activeCoupons.find(
+          (coupon) => coupon.combine === false
+        );
+        if (gotFalseCombine) {
+          dispatch(addError({ errMessage: "You can not combine this coupon" }));
         } else {
-          if (coupons.activeCoupons.includes(gotCoupon)) {
-            dispatch(addError({ errMessage: "Coupon Allready Apllied" }));
-            return;
-          }
           dispatch(addCoupon(gotCoupon));
         }
       }
